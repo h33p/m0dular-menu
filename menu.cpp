@@ -60,7 +60,7 @@ void Menu::InitializeStyle()
 	};
 
 	ImVec4 mainColor = ImVec4(0.08f, 0.42f, 0.70f, 1.00f);
-	ImVec4 mainColorHovered = ImVec4(0.10f, 0.41f, 0.84f, 1.00f);
+	ImVec4 mainColorHovered = ImVec4(0.1f, 0.5f, 0.84f, 1.00f);
 	ImVec4 mainColorActive = ImVec4(0.05f, 0.64f, 0.99f, 1.00f);
 
 	colors[ImGuiCol_WindowBg] = ImVec4(0.16f, 0.16f, 0.16f, 0.95f);
@@ -77,6 +77,7 @@ void Menu::InitializeStyle()
 	colors[ImGuiCol_PlotLines]= ImVec4(0.39f, 0.71f, 1.00f, 1.00f);
 	colors[ImGuiCol_PlotHistogram] = ImVec4(0.39f, 0.71f, 1.00f, 1.00f);
 	colors[ImGuiCol_PlotHistogramHovered] = ImVec4(0.89f, 0.50f, 0.19f, 1.00f);
+	colors[ImGuiCol_CheckMark] = ImVec4(0.55f, 0.78f, 0.98f, 1.00f);
 
 	for (auto& i : colorsStandard)
 		colors[i] = mainColor;
@@ -94,4 +95,42 @@ void Menu::InitializeFonts()
 	ImFont* font = io.Fonts->AddFontFromFileTTF("Oxygen-Regular.ttf", 40.0f);
 	IM_ASSERT(font != NULL);
 	font->Scale *= 0.5f;
+
+	//TODO: Put this somewhere else
+	io.IniFilename = nullptr;
+}
+
+size_t selectedTab = 0;
+
+void Menu::Render(const MenuTab* tabs, size_t tabCount)
+{
+	ImGui::SetNextWindowSize(ImVec2(1000, 700), ImGuiSetCond_Always);
+
+	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(6, 8));
+
+	if (ImGui::Begin("m0dular.cc Genesis", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize)) {
+
+		//Pop FramePadding
+		ImGui::PopStyleVar(1);
+
+		for (size_t i = 0; i < tabCount; i++) {
+			if (i)
+				ImGui::SameLine();
+			ImGui::PushStyleColor(ImGuiCol_Button, ImGui::GetStyle().Colors[i == selectedTab ? ImGuiCol_ButtonActive : ImGuiCol_Button]);
+			if (ImGui::Button(tabs[i].name, ImVec2(1000 / tabCount, 0)))
+				selectedTab = i;
+			ImGui::PopStyleColor();
+		}
+
+		ImGui::PopStyleVar(2);
+
+		if (selectedTab < tabCount && tabs[selectedTab].Callback)
+			tabs[selectedTab].Callback();
+
+		ImGui::End();
+	} else
+		ImGui::PopStyleVar(3);
+
 }

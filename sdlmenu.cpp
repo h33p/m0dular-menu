@@ -14,3 +14,11 @@ void SDLMenu::PollEvent(SDL_Event* event)
 {
 	ImGui_ImplSDL2_ProcessEvent(event);
 }
+
+void SDLMenu::NewFrame(struct SDL_Window* window)
+{
+	// Start the Dear ImGui frame
+	ImGui_ImplOpenGL2_NewFrame();
+	ImGui_ImplSDL2_NewFrame(window);
+	ImGui::NewFrame();
+}

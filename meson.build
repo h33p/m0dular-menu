@@ -13,7 +13,7 @@ thread_dep = dependency('threads')
 
 dependency_list += thread_dep
 
-file_list = ['menu.cpp', 'imgui/imgui.cpp', 'imgui/imgui_demo.cpp', 'imgui/imgui_draw.cpp', 'imgui/imgui_widgets.cpp']
+file_list = ['testmenu.cpp', 'menu.cpp', 'imgui/imgui.cpp', 'imgui/imgui_demo.cpp', 'imgui/imgui_draw.cpp', 'imgui/imgui_widgets.cpp']
 
 cc = meson.get_compiler('cpp')
 cpu_family = host_machine.cpu_family()

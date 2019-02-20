@@ -10,6 +10,7 @@ namespace SDLMenu
 {
 	void InitializeContext(SDL_GLContext glContext, struct SDL_Window* window);
 	void PollEvent(union SDL_Event* event);
+	void NewFrame(struct SDL_Window* window);
 }
 
 #endif
