@@ -91,8 +91,8 @@ void Menu::InitializeStyle()
 
 void Menu::InitializeFonts()
 {
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	ImFont* font = io.Fonts->AddFontFromFileTTF("Oxygen-Regular.ttf", 40.0f);
+	ImGuiIO& io = ImGui::GetIO();
+	ImFont* font = io.Fonts->AddFontFromFileTTF("OpenSans-Regular.ttf", 40.0f);
 	IM_ASSERT(font != NULL);
 	font->Scale *= 0.5f;
 
