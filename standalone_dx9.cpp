@@ -3,7 +3,7 @@
 
 #include "dx9menu.h"
 #include "menu.h"
-#include "testmenu.h"
+#include "menuimpl.h"
 #include "imgui.h"
 #include "imgui/examples/imgui_impl_dx9.h"
 #include "imgui/examples/imgui_impl_win32.h"
@@ -110,7 +110,7 @@ int main(int, char**)
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-		TestMenu::Render();
+	    MenuImpl::Render();
 
         // Rendering
         ImGui::EndFrame();

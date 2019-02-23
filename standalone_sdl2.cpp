@@ -11,7 +11,7 @@
 #include "imgui/examples/imgui_impl_opengl2.h"
 #include "menu.h"
 #include "sdlmenu.h"
-#include "testmenu.h"
+#include "menuimpl.h"
 #include <stdio.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
@@ -77,7 +77,7 @@ int main(int, char**)
 
 		SDLMenu::NewFrame(window);
 
-		TestMenu::Render();
+		MenuImpl::Render();
 
 		// Rendering
 		ImGui::Render();
