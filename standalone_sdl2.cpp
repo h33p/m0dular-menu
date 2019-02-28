@@ -16,8 +16,16 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 
-int main(int, char**)
+int main(int argc, char** args)
 {
+	float scaleFactor = 0;
+	//Get the scaling factor
+	for (int i = 0; i < argc; i++)
+		if (strstr(args[i], "-scale="))
+			sscanf(args[i], "-scale=%f", &scaleFactor);
+
+	printf("ImGui scale: %f\n", scaleFactor);
+
 	// Setup SDL
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	{
@@ -34,7 +42,7 @@ int main(int, char**)
 	SDL_DisplayMode current;
 	SDL_GetCurrentDisplayMode(0, &current);
 	SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
-	SDL_Window* window = SDL_CreateWindow("m0dular.cc standalone menu", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
+	SDL_Window* window = SDL_CreateWindow("m0dular.cc standalone menu", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280 * scaleFactor, 720 * scaleFactor, window_flags);
 	SDL_GLContext gl_context = SDL_GL_CreateContext(window);
 	//SDL_GL_SetSwapInterval(1); // Enable vsync
 
@@ -48,6 +56,7 @@ int main(int, char**)
 	Menu::InitializeStyle();
 	Menu::InitializeFonts();
 
+	io.FontGlobalScale = scaleFactor;
 	// Load Fonts
 	// - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
 	// - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.

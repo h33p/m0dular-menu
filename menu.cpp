@@ -104,7 +104,11 @@ size_t selectedTab = 0;
 
 void Menu::Render(const MenuTab* tabs, size_t tabCount)
 {
-	ImGui::SetNextWindowSize(ImVec2(1000, 700), ImGuiSetCond_Always);
+	ImGuiIO& io = ImGui::GetIO();
+
+	float scale = io.FontGlobalScale;
+
+	ImGui::SetNextWindowSize(ImVec2(1000 * scale, 700 * scale), ImGuiSetCond_Always);
 
 	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
@@ -119,7 +123,7 @@ void Menu::Render(const MenuTab* tabs, size_t tabCount)
 			if (i)
 				ImGui::SameLine();
 			ImGui::PushStyleColor(ImGuiCol_Button, ImGui::GetStyle().Colors[i == selectedTab ? ImGuiCol_ButtonActive : ImGuiCol_Button]);
-			if (ImGui::Button(tabs[i].name, ImVec2(1000 / tabCount, 0)))
+			if (ImGui::Button(tabs[i].name, ImVec2(scale * 1000 / tabCount, 0)))
 				selectedTab = i;
 			ImGui::PopStyleColor();
 		}
