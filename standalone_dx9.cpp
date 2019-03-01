@@ -76,11 +76,12 @@ int main(int, char**)
 
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
+
+	DX9Menu::InitializeContext(g_pd3dDevice, hwnd);
+
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 
-	DX9Menu::InitializeContext(g_pd3dDevice, hwnd);
 	Menu::InitializeStyle();
 	Menu::InitializeFonts();
 

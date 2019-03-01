@@ -6,8 +6,16 @@
 
 void SDLMenu::InitializeContext(SDL_GLContext glContext, SDL_Window* window)
 {
+	ImGui::CreateContext();
 	ImGui_ImplSDL2_InitForOpenGL(window, glContext);
 	ImGui_ImplOpenGL2_Init();
+}
+
+void SDLMenu::ShutdownContext()
+{
+	ImGui_ImplOpenGL2_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui::DestroyContext();
 }
 
 void SDLMenu::PollEvent(SDL_Event* event)

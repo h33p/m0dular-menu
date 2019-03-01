@@ -48,11 +48,12 @@ int main(int argc, char** args)
 
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
+
+	SDLMenu::InitializeContext(gl_context, window);
+
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
 
-	SDLMenu::InitializeContext(gl_context, window);
 	Menu::InitializeStyle();
 	Menu::InitializeFonts();
 

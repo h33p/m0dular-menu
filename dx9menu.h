@@ -9,6 +9,7 @@
 namespace DX9Menu
 {
 	void InitializeContext(struct IDirect3DDevice9* device, HWND window);
+	void ShutdownContext();
     bool WndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam);
 }
 

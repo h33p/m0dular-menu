@@ -13,8 +13,16 @@ IMGUI_IMPL_API LRESULT  ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPAR
 
 void DX9Menu::InitializeContext(IDirect3DDevice9* device, HWND window)
 {
+	ImGui::CreateContext();
     ImGui_ImplWin32_Init(window);
     ImGui_ImplDX9_Init(device);
+}
+
+void DX9Menu::ShutdownContext()
+{
+	ImGui_ImplDX9_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
 }
 
 bool DX9Menu::WndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
