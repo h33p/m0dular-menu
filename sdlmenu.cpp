@@ -18,9 +18,9 @@ void SDLMenu::ShutdownContext()
 	ImGui::DestroyContext();
 }
 
-void SDLMenu::PollEvent(SDL_Event* event)
+bool SDLMenu::PollEvent(SDL_Event* event)
 {
-	ImGui_ImplSDL2_ProcessEvent(event);
+	return ImGui_ImplSDL2_ProcessEvent(event);
 }
 
 void SDLMenu::NewFrame(struct SDL_Window* window)
