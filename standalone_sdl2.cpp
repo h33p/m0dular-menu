@@ -18,7 +18,7 @@
 
 int main(int argc, char** args)
 {
-	float scaleFactor = 0;
+	float scaleFactor = 1;
 	//Get the scaling factor
 	for (int i = 0; i < argc; i++)
 		if (strstr(args[i], "-scale="))

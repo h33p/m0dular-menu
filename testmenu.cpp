@@ -1,5 +1,6 @@
 #include "menuimpl.h"
 #include "menu.h"
+#include "widgets.h"
 
 static void AimbotTab();
 static void VisualsTab();
@@ -22,28 +23,31 @@ void MenuImpl::Render()
 float globalFloat = 43;
 float anotherGlobalFloat = 43;
 int globalInt = 3;
+int anotherGlobalInt = 10;
 float globalVec[4];
 
 static void AimbotTab()
 {
+	TabPad pad;
+	ImGui::Button("OWO");
 	ImGui::Columns(2, nullptr, true);
-	ImGui::BeginChild("C1", ImVec2(0, 0), true);
+	ImGui::BeginChild("C1", ImVec2(0, 0), true, ImGuiWindowFlags_NoBackground);
 	{
-		Slider<float, globalFloat>::Run();
-		Slider<float, anotherGlobalFloat>::Run(-12, 12);
+		Slider<float>::Run(globalFloat);
+		Slider<float>::Run(anotherGlobalFloat, -12, 12, "Floaty thing");
+		CheckBox::Run(globalInt, "Bool");
 	}
 	ImGui::EndChild();
 
 	ImGui::NextColumn();
 
-	ImGui::BeginChild("C2", ImVec2(0, 0), true);
+	ImGui::BeginChild("C2", ImVec2(0, 0), true, ImGuiWindowFlags_NoBackground);
 	{
-		Slider<int, globalInt>::Run(0, 100);
-		SliderVec<float, 4, globalVec>::Run(0, 100);
+		Slider<int>::Run(globalInt, 0, 100);
+		Slider<float>::Run(anotherGlobalInt, 0, 100);
+		SliderVec<float, 4>::Run(globalVec, 0, 100);
 	}
 	ImGui::EndChild();
-
-
 }
 
 static void VisualsTab()
