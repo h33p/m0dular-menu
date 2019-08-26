@@ -5,7 +5,7 @@
 
 struct TabPad
 {
-	const int& pad;
+	const int pad;
 
 	TabPad(const int& p = 10)
 		: pad(p)
