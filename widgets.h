@@ -20,6 +20,19 @@ struct TabPad
 	}
 };
 
+struct IdPush
+{
+	IdPush(const void* ptr)
+	{
+		ImGui::PushID(ptr);
+	}
+
+	~IdPush()
+	{
+		ImGui::PopID();
+	}
+};
+
 template<typename T>
 struct Slider
 {
@@ -30,10 +43,7 @@ struct Slider
 	{
 		T tv = V;//, ov = tv;
 
-		//You are not expected to have multiple sliders for the same option.
-		ImGui::PushID((void*)&V);
 		ImGui::SliderScalar(label, dataType, &tv, &min, &max, format, power);
-		ImGui::PopID();
 
 		V = tv;
 	}
@@ -52,10 +62,7 @@ struct SliderVec
 		for (size_t i = 0; i < N; i++)
 			tv[i] = ov[i] = V[i];
 
-		//You are not expected to have multiple sliders for the same option.
-		ImGui::PushID((void*)&V);
 		ImGui::SliderScalarN(label, dataType, tv, N, &min, &max, format, power);
-		ImGui::PopID();
 
 		for (size_t i = 0; i < N; i++)
 			V[i] = tv[i];

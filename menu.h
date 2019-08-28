@@ -8,7 +8,8 @@
 struct MenuTab
 {
 	const char* name;
-	void (*Callback)(void);
+	void (*Callback)(void*);
+	void* passData;
 };
 
 namespace Menu

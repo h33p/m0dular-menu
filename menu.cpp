@@ -131,7 +131,7 @@ void Menu::Render(const MenuTab* tabs, size_t tabCount)
 		ImGui::PopStyleVar(2);
 
 		if (selectedTab < tabCount && tabs[selectedTab].Callback)
-			tabs[selectedTab].Callback();
+			tabs[selectedTab].Callback(tabs[selectedTab].passData);
 
 		ImGui::End();
 	} else
