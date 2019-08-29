@@ -108,7 +108,7 @@ void Menu::Render(const MenuTab* tabs, size_t tabCount)
 
 	float scale = io.FontGlobalScale;
 
-	ImGui::SetNextWindowSize(ImVec2(1000 * scale, 700 * scale), ImGuiSetCond_Always);
+	ImGui::SetNextWindowSize(ImVec2(1000 * scale, 700 * scale), ImGuiCond_Always);
 
 	ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
