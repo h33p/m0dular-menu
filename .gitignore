@@ -8,3 +8,4 @@ build_mac/*
 *.dll
 *.so
 *.pdb
+*.ttf

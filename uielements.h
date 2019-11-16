@@ -34,13 +34,13 @@ struct UIColumn
 	}
 
 	template<typename Q>
-	void PushToHashList(const Q& arg)
+	typename std::enable_if<!std::is_same<Q, crcs_t>::value, void>::type PushToHashList(const Q& arg)
 	{
 		elementHashes.push_back(Q::CRCVAL);
 	}
 
-	template<>
-	void PushToHashList<crcs_t>(const crcs_t& crc)
+	template<typename Q>
+	typename std::enable_if<std::is_same<Q, crcs_t>::value, void>::type PushToHashList(const Q& crc)
 	{
 		elementHashes.push_back(crc);
 	}
